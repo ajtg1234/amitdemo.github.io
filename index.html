@@ -1,0 +1,559 @@
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <title>Audiobot</title>
+      <style>
+         html,body{
+         height: 100%;
+         overflow: none;
+         }
+         body{
+         min-width: 100%;
+         min-height: 100%;
+         height: 100%;
+         background-color: #c5c5c5;
+         background-image: url(assets/img/power.png), url(assets/img/air.png);
+         background-position: center 95%, center 3%;
+         background-size: 40% auto, 40% auto;
+         background-repeat: no-repeat;
+         border: 15px solid rgb(173 185 202 / 1);
+         }
+         #contain1{
+         height: 100%;
+         display: flex;
+         align-items: center;
+         }
+         #contain2{
+          display: flex;
+          align-items: center;
+         }
+         #contain2>div{
+          width: 100%;
+          display: block;
+         }
+         #contain2>div>button{
+          width: 100%;
+          display: block;
+          margin-bottom: 10px;
+         }
+         #img1{
+         background-image: url(assets/img/Btn%201.png);
+         /* margin-top: 50%; */
+         margin-bottom: 30px;
+         margin-top: 25px;
+         background-position: center;
+         background-size: auto 100%;
+         background-repeat: no-repeat;
+         width: 100%;
+         height: 150px;
+         /* margin-left: 38%; */
+         display: block;
+         }
+         #tryme{
+         background-image: url(assets/img/Btn%202.png);
+         /* margin-top: 20%; */
+         /* margin-left: 38%; */
+         margin-bottom: 30px;
+         background-position: center;
+         background-size: auto 100%;
+         background-repeat: no-repeat;
+         width: 100%;
+         height: 150px;
+         }
+         #img3{
+         background-image: url(assets/img/Btn%203.png);
+         /* margin-top: 20%; */
+         /* margin-left: 38%; */
+         margin-bottom: 30px;
+         background-position: center;
+         background-size: auto 100%;
+         background-repeat: no-repeat;
+         width: 100%;
+         height: 150px;
+         }
+         #contain{
+          padding: 0;
+          background-color: #c5c5c5;
+          background-image: url(assets/img/normal.gif);
+          background-position: center -80px;
+          background-repeat: no-repeat;
+          background-size: cover;
+         }
+         #customer{
+          min-width: 90%;
+          top: 25%;
+          position: fixed;
+          min-height: 70px;
+          padding: 10px;
+          color: rgb(255,255,255);
+          border-radius: 30px 30px 30px 5px !important;
+         }
+         #trainee{
+         min-width: 90%;
+          bottom: 50%;
+          position: fixed;
+          min-height: 70px;
+          padding: 10px;
+          color: rgb(0 0 0);
+          right: 15px;
+          border-radius: 30px 30px 5px 30px !important;
+
+         }
+         #idea{
+          height: 24px;
+          position: relative;
+          top: -25px;
+          left: 17px;
+         }
+         #hint{
+         height: 200px;
+         }
+         #controls{
+          position: fixed;
+          bottom: 0;
+          width: calc( 100% - 30px );
+          background: #fff;
+          padding: 5px;
+         }
+         #controls>div{
+          display: inline-block;
+          width: 30%;
+          text-align: center;
+         }
+         #controls img{
+          height: 40px !important;
+         }
+         #scripter{
+          position: fixed;
+          width: calc( 100% - 30px );
+          bottom: 55px;
+         }
+         #scripter #video{
+          height: 100px;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+         }
+      </style>
+   </head>
+   <body>
+      <body id="body" class="text-justify d-flex">
+         <div id="contain1" class="container visible">
+            <div style="width: 100vw;">
+               <img id="img1" class="img-fluid visible" loading="eager">
+               <img id="tryme" class="img-fluid visible" style="
+                  " loading="eager">
+               <img id="img3" class="img-fluid visible" style="
+                  " loading="eager">
+            </div>
+         </div>
+         <div id="contain2" class="container">
+          <div>
+            <button class="btn btn-primary" id="btn1">Airtel Bank Wala Sim</button>
+            <button class="btn btn-primary" id="btn2">One Airtel</button>
+          </div>
+         </div>
+         <div id="contain" class="container" style="">
+            <textarea id="customer" class="bg-danger border rounded border-danger invisible" style=""></textarea>
+            <textarea id="trainee" class="bg-white border-dark invisible" style=""></textarea>
+            
+            <div class="d-flex" id="scripter">
+               <img id="idea"
+               src="assets/img/idea.png" class="visible" style="">
+               <textarea id="hint" class="bg-white border-white visible" style=""></textarea>
+               <video id="video" muted></video>
+            </div>
+            <div id="controls">
+              <div>
+               <img id="cancel" src="assets/img/cancel%20button.png" >
+              </div>
+              <div>
+               <img id="record" src="assets/img/record%20.png">
+              </div>
+              <div>
+               <img id="stop" class="img-fluid" src="assets/img/stop%20audio.png">
+              </div>
+            </div>
+         </div>
+         <!-- Optional JavaScript -->
+         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+         <script src="https://code.jquery.com/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+         <script>
+            $('#contain').hide();
+            $('#contain2').hide();
+           
+            
+            
+            $('#tryme').click(function(){
+            
+            $('#contain1').hide();
+            document.getElementById('body').style='';
+               $('#contain2').show();
+            
+            });
+            var index=0;
+            let mindex=0;
+            let findex=12;       
+            $('#btn1').click(function(){
+               index=0;
+            $('#contain2').hide();
+            
+              $('#contain').show();
+              $('#hint').html(hints[mindex][index]);
+            
+            });
+            $('#btn2').click(function(){
+               index=0;
+            mindex=1;
+            findex=27;
+            $('#hint').html(hints[mindex][index]);
+            $('#contain2').hide();
+            
+              $('#contain').show();
+            
+            });
+            
+            var customer=[
+            ["\u092e\u0941\u091d\u0947 \u090f\u0915 \u0928\u092f\u093e \u0938\u093f\u092e \u091a\u093e\u0939\u093f\u090f",
+            "\u090f \u092c\u0940 \u0938\u0940 \u092c\u0948\u0902\u0915",
+            "\u0939\u093e\u0902 \u0932\u0947\u0915\u093f\u0928 \u092a\u0948\u0938\u0947 \u0928\u093f\u0915\u093e\u0932\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u091c\u093e\u0928\u093e \u0924\u094b \u092a\u0921\u093c\u0924\u093e \u0939\u0940 \u0939\u0948",
+            "\u0938\u0939\u0940 \u0915\u0939 \u0930\u0939\u0947 \u0939\u094b \u0906\u092a \u0932\u0947\u0915\u093f\u0928 \u091c\u093e\u0928\u093e \u091c\u0930\u0942\u0930\u0940 \u0939\u094b\u0924\u093e \u0939\u0948",
+            "\u0935\u0939 \u0915\u0948\u0938\u0947",
+            "\u0905\u091a\u094d\u091b\u093e \u0915\u094d\u092f\u093e \u0939\u0948 \u092f\u0939 \u0935\u093f\u0936\u0947\u0937\u0924\u093e\u090f\u0902",
+            "\u092f\u0939 \u0924\u094b \u092c\u0939\u0941\u0924 \u0905\u091a\u094d\u091b\u093e \u0939\u0948",
+            "\u0905\u091a\u094d\u091b\u093e",
+            "\u092c\u0922\u093c\u093f\u092f\u093e \u0939\u0948",
+            "\u0935\u093e\u0939 \u092a\u0930 \u0905\u0915\u093e\u0909\u0902\u091f \u0916\u094b\u0932\u0928\u0947 \u092e\u0947\u0902 \u0924\u094b \u091f\u093e\u0907\u092e \u0932\u0917\u0924\u093e \u0939\u0948 \u0914\u0930 \u092e\u0948\u0902 \u0924\u094b \u0938\u093f\u092e \u0932\u0947\u0928\u0947 \u0915\u0940 \u091c\u0932\u094d\u0926\u0940 \u092e\u0947\u0902 \u0939\u0942\u0902",
+            "\u092f\u0939 \u0924\u094b \u092c\u0939\u0941\u0924 \u0924\u0947\u091c \u0939\u0948 \u0914\u0930 \u0906\u0938\u093e\u0928 \u092d\u0940",
+            "\u092f\u0939 \u0924\u094b \u0938\u0939\u0940 \u0939\u0948 \u0906\u092a \u092e\u0947\u0930\u093e \u0905\u0915\u093e\u0909\u0902\u091f \u0913\u092a\u0928 \u0915\u0930 \u0926\u0940\u091c\u093f\u090f"
+            ],
+            ["\u0939\u093e\u0902 \u091c\u0940 \u092e\u0948\u0902\u0928\u0947 \u0930\u093f\u0938\u0940\u0935 \u0915\u093f\u092f\u093e \u0939\u0948","\u0928\u0939\u0940\u0902 \u0928\u0939\u0940\u0902 \u092c\u0938 \u0907\u0924\u0928\u093e \u0939\u0940 \u0920\u0940\u0915 \u0939\u0948","\u0939\u093e\u0902 \u092e\u0947\u0930\u0947 \u092a\u093e\u0938 \u0926\u094b \u0914\u0930 \u092a\u094d\u0930\u0940\u092a\u0947\u0921 \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928 \u0939\u0948\u0902","\u0928\u0939\u0940\u0902 \u090f\u0915 \u0935\u094b\u0921\u093e\u092b\u094b\u0928 \u0915\u093e \u0939\u0948 \u0914\u0930 \u090f\u0915 \u091c\u093f\u0913 \u0915\u093e","\u0939\u093e\u0902 \u0915\u0930\u0924\u0940 \u0939\u0942\u0902","\u0928\u0939\u0940\u0902 \u090f\u0915 \u0932\u094b\u0915\u0932 \u0915\u0902\u092a\u0928\u0940 \u0915\u093e \u0939\u0948","\u0939\u093e\u0902 \u0915\u0930\u0924\u0940 \u0939\u0942\u0902","\u092e\u0947\u0930\u0947 \u092a\u093e\u0938 \u0905\u092d\u0940 \u091f\u093e\u091f\u093e \u0938\u094d\u0915\u093e\u0908 \u0939\u0948","\u0939\u093e\u0902 \u0915\u0930\u0928\u0947 \u092a\u0921\u093c\u0924\u0947 \u0939\u0948\u0902","\u0939\u093e\u0902 \u0909\u0938\u0915\u093e \u092c\u093f\u0932\u093f\u0902\u0917 \u0938\u093e\u0907\u0915\u093f\u0932 \u0905\u0932\u0917 \u0939\u0948","\u0939\u093e\u0902","\u0939\u093e\u0902 \u0907\u0938\u0915\u093e \u092e\u0941\u091d\u0947 \u0925\u094b\u0921\u093c\u093e \u0927\u094d\u092f\u093e\u0928 \u0930\u0916\u0928\u093e \u092a\u0921\u093c\u0924\u093e \u0939\u0948 \u0938\u093e\u0930\u0947 \u092c\u093f\u0932\u093f\u0902\u0917 \u0938\u093e\u0907\u0915\u093f\u0932 \u0905\u0932\u0917-\u0905\u0932\u0917 \u0939\u0948\u0902 \u0924\u094b \u0921\u0947\u091f\u094d\u0938 \u092f\u093e\u0926 \u0930\u0916\u0928\u0940 \u092a\u0921\u093c\u0924\u0940 \u0939\u0948","\u0905\u091a\u094d\u091b\u093e","\u092f\u093e\u0928\u0940 \u092e\u0947\u0930\u0947 \u091c\u093f\u0924\u0928\u0947 \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928 \u0939\u0948\u0902 \u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 \u0939\u0948 \u0921\u0940\u091f\u0940\u090f\u091a \u0939\u0948 \u0938\u092c\u0915\u093e \u090f\u0915 \u0939\u0940 \u092c\u093f\u0932 \u0906\u090f\u0917\u093e","\u092f\u0939 \u0924\u094b \u0915\u093e\u092b\u0940 \u0905\u091a\u094d\u091b\u093e \u0939\u0948 \u0907\u0938\u0915\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902 \u0906\u092a \u092e\u0941\u091d\u0947 \u0914\u0930 \u092c\u0924\u093e \u0938\u0915\u0924\u0947 \u0939\u0948\u0902 \u0915\u094c\u0928 \u0915\u094c\u0928 \u0938\u0940 \u0938\u0930\u094d\u0935\u093f\u0938 \u0939\u0948\u0902 \u0914\u0930 \u0915\u094d\u092f\u093e \u0915\u094d\u092f\u093e \u092a\u094d\u0932\u093e\u0928 \u0939\u0948","\u0939\u093e\u0902 \u0915\u0949\u0928\u094d\u091f\u0948\u0915\u094d\u091f \u0938\u0947\u0902\u091f\u0930 \u092d\u0940 \u0905\u0932\u0917-\u0905\u0932\u0917 \u0939\u0948\u0902","\u0905\u091a\u094d\u091b\u093e","\u0939\u093e\u0902 \u092f\u0939 \u092d\u0940 \u0915\u093e\u092b\u0940 \u0905\u091a\u094d\u091b\u093e \u0939\u0948","\u0939\u093e\u0902 \u0910\u0938\u093e \u0924\u094b \u0939\u0948 \u0939\u0940","\u092f\u093e\u0928\u0940 \u092b\u094d\u0930\u0940 \u0938\u0930\u094d\u0935\u093f\u0938 \u092b\u0949\u0930\u090f\u0935\u0930","\u092f\u0939 \u0924\u094b \u0915\u093e\u092b\u0940 \u0905\u091a\u094d\u091b\u093e \u0939\u0948","\u0905\u091a\u094d\u091b\u093e","\u0905\u091a\u094d\u091b\u093e","\u092f\u093e\u0928\u0940 \u0938\u093e\u0930\u0940 \u0907\u0915\u094d\u0935\u093f\u092a\u092e\u0947\u0902\u091f\u094d\u0938 \u0914\u0930 \u0921\u093f\u0935\u093e\u0907\u0938\u0947\u091c \u092b\u094d\u0930\u0940 \u0939\u094b\u0902\u0917\u0940","\u092a\u094d\u0932\u093e\u0928  \u0924\u094b \u0915\u093e\u092b\u0940 \u0905\u091a\u094d\u091b\u093e \u0939\u0948 \u092e\u0948\u0902 \u0907\u0938 \u092a\u094d\u0932\u093e\u0928 \u0915\u094b \u0932\u0947\u0928\u093e \u091a\u093e\u0939\u0942\u0902\u0917\u0940","\u0939\u093e\u0902 \u092f\u0939 \u0924\u094b \u0915\u093e\u092b\u0940 \u0905\u091a\u094d\u091b\u093e \u0939\u0948","\u0905\u091a\u094d\u091b\u093e"]
+             ];
+            
+            var trainee=[
+           ["[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 (\u092a\u094d\u0930\u092e\u094b\u091f\u0930|[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*\u092e\u094b\u091f\u0930) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0906\u092a\u0915\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0915\u0930\u0942\u0901\u0917\u093e|\u0915\u0930\u0942\u0902\u0917\u093e|\u0915\u0930\u0942\u0902\u0917\u0940|\u0915\u0930\u0942\u0901\u0917\u0940) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u090f\u0915|1) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u091c\u092e|\u091c\u093f\u092e|\u0938\u092e|\u0938\u093f\u092e|\u0938\u0947\u092e|\u0938[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*|\u092b\u093f\u0932\u094d\u092e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092c\u0948\u0902\u0915\u093f\u0902\u0917|\u092c\u0948\u0902\u0915) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0926\u0942\u0930 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u091f\u093e\u0907\u092e [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","([^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0915\u0930\u0941\u0923\u093e|\u092a\u0942\u0930\u094d\u0923\u093e|\u092a\u0942\u0930\u0923\u093e|\u0915\u094b\u0930\u0941\u0923\u093e|\u0915\u0930\u0941\u0928\u093e|\u0915\u094b\u0930\u0941\u0928\u093e|\u0915\u094b\u0930\u094b\u0928\u093e|\u0915\u094b\u0930\u094b\u0928\u093e\u0935\u093e\u092f\u0930\u0938|\u0928\u093e|\u0930\u0941\u0923\u093f\u091a\u093e)|(\u0915\u0930\u0941\u0923\u093e|\u092a\u0942\u0930\u094d\u0923\u093e|\u092a\u0942\u0930\u0923\u093e|\u0915\u094b\u0930\u0941\u0923\u093e|\u0915\u0930\u0941\u0928\u093e|\u0915\u094b\u0930\u0941\u0928\u093e|\u0915\u094b\u0930\u094b\u0928\u093e|\u0915\u094b\u0930\u094b\u0928\u093e\u0935\u093e\u092f\u0930\u0938|\u0928\u093e|\u0930\u0941\u0923\u093f\u091a\u093e)) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 \u092c\u0948\u0902\u0915 \u0935\u093e\u0932\u093e (\u091c\u092e|\u091c\u093f\u092e|\u0938\u092e|\u0938\u093f\u092e|\u0938\u0947\u092e|\u0938[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*|\u092b\u093f\u0932\u094d\u092e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u0948\u0902\u0915\u093f\u0902\u0917 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 (\u092a\u0947\u092e\u0947\u0902\u091f|\u092a\u0947\u092e\u0947\u0902\u091f\u094d\u0938) \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u0948\u0902\u0915 \u0935\u093e\u0932\u093e (\u091c\u092e|\u091c\u093f\u092e|\u0938\u092e|\u0938\u093f\u092e|\u0938\u0947\u092e|\u0938[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*|\u092b\u093f\u0932\u094d\u092e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092a\u093e\u0902\u091a|5) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 \u0938\u094d\u091f\u094b\u0930 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092f\u0942\u092a\u0940\u0906\u0908 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0905\u0915\u093e\u0909\u0902\u091f \u0928\u0902\u092c\u0930 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 (\u092a\u0947\u092e\u0947\u0902\u091f|\u092a\u0947\u092e\u0947\u0902\u091f\u094d\u0938) \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 (\u092a\u0947\u092e\u0947\u0902\u091f|\u092a\u0947\u092e\u0947\u0902\u091f\u094d\u0938) \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0930\u093f\u091a\u093e\u0930\u094d\u091c [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u20b9500|500) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0938\u0941\u0930\u0915\u094d\u0937\u093e [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0926\u0941\u0930\u094d\u0918\u091f\u0928\u093e \u092c\u0940\u092e\u093e [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u0948\u0902\u0915 \u0935\u093e\u0932\u093e (\u091c\u092e|\u091c\u093f\u092e|\u0938\u092e|\u0938\u093f\u092e|\u0938\u0947\u092e|\u0938[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*|\u092b\u093f\u0932\u094d\u092e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 (\u092a\u0947\u092e\u0947\u0902\u091f|\u092a\u0947\u092e\u0947\u0902\u091f\u094d\u0938) \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* 5 \u092e\u093f\u0928\u091f [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0906\u0938\u093e\u0928 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u0948\u0902\u0915 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0938\u092e\u092f|\u091f\u093e\u0907\u092e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*"]
+           ,["[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092a\u094d\u0930\u0949\u092c\u094d\u0932\u092e [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092e\u0948\u0938\u0947\u091c [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092e\u0926\u0926|\u092e\u0926|\u092e\u0924\u093e\u0940|\u092e\u0925\u0930|\u0938\u0939\u093e\u092f\u0924\u093e) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092a\u094b\u0938\u094d\u091f\u092a\u0947\u0921 \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928|\u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0926\u094b\u0928\u094b\u0902 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0915\u0902\u092a\u0928\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092e\u094b\u092c\u093e\u0907\u0932 (\u0915\u0928\u0947\u0915\u094d\u0936\u0902\u0938|\u0915\u0928\u0947\u0915\u094d\u0936\u0928) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092c\u093f\u0932|\u092c\u0932) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0921\u0947\u091f [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0921\u0947\u091f [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0915\u0948\u0938\u0947 \u092e\u0948\u0928\u0947\u091c [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u0915 \u0939\u0940 (\u092c\u093f\u0932|\u092c\u0932) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0905\u0932\u0917[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u092c\u093f\u0932|\u092c\u0932) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u0915 \u0939\u0940 (\u092c\u093f\u0932|\u092c\u0932) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0915\u0949\u0932 \u0938\u0947\u0902\u091f\u0930 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0915\u093e\u0902\u091f\u0947\u0915\u094d\u091f \u0938\u0947\u0902\u091f\u0930|\u0915\u0949\u0932 \u0938\u0947\u0902\u091f\u0930) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938)[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*\u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 \u0938\u094d\u091f\u094b\u0930 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) \u0938\u0930\u094d\u0935\u093f\u0938 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0932\u093e\u0907\u092b \u091f\u093e\u0907\u092e [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092b\u094d\u0930\u0940 \u0938\u0930\u094d\u0935\u093f\u0938 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0924\u0940\u0928|3) \u092e\u094b\u092c\u093e\u0907\u0932 \u0915\u0928\u0947\u0915\u094d\u0936\u0928 (\u090f\u0915|1) (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u20b9500|500) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u091a\u0921\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0938\u0947\u091f\u0905\u092a|\u0938\u0947\u091f \u091f\u0949\u092a) \u092c\u0949\u0915\u094d\u0938 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (200|200mbps) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092b\u094d\u0930\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u20b91999|1999) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u0921\u0940\u091f\u0940\u090f\u091a|\u0921\u0940\u0921\u0940\u090f|\u091f\u0940\u0921\u0940\u090f\u0938) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (\u20b9500|500) [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u092c\u094d\u0930\u0949\u0921\u092c\u0948\u0902\u0921 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* 300 \u091c\u0940\u092c\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u090f\u092f\u0930\u091f\u0947\u0932 \u0925\u0948\u0902\u0915\u094d\u0938 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* (1|\u090f\u0915) \u0938\u093e\u0932 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*","[^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]* \u0906\u092a\u0915\u0940 [^,.\/\\][{}()*&%$#@!~`;\u2019\u201d]*"]
+            ];
+            
+            var imp='\u0915\u0943\u092A\u092F\u093E \u092C\u0947\u0939\u0924\u0930 \u0924\u0930\u0940\u0915\u0947 \u0938\u0947 \u092C\u094B\u0932\u0947';
+            
+            
+            var hints=[
+            ['नमस्कार मैम मैं अमित आपका एयरटेल प्रमोटर बताइए मैं आपकी किस तरह सहायता कर सकता हूं',
+            'जी मैम मैं आपकी सहायता जरूर करूंगा आपके लिए मेरे पास एक बहुत बेहतरीन सिम है पर क्या मैं जान सकता हूं कि आप बैंकिंग सर्विसेज यूज करने के लिए कौन से बैंक में जाते हो',
+            'यह बैंक तो यहां से काफी दूर है आपका काफी सारा टाइम खर्च हो जाता होगा',
+            'कोरोनावायरस के समय वहां जाने में काफी ज्यादा खतरा है',
+            'मैम आप जैसे कस्टमर्स की कन्वीनियंस को देखते हुए एयरटेल एक नई सिम लाया है जिसका नाम है एयरटेल बैंक वाला सिम इससे आपके टेलीकॉम जरूरत है तो पूरी होंगी ही साथ ही आप अपने बैंकिंग सर्विसेज का भी लाभ उठा सकते हैं',
+            'मैम आपको खुलवाना है एयरटेल पेमेंट बैंक में अपना सेविंग अकाउंट और बैंक वाला सिम की बदौलत आपका बैंक जाने का झंझट पूरी तरह से खत्म बैंक वाला सिम की पांच विशेषताओं के जरिए आपके बैंकिंग से जुड़े सभी काम पूरे होंगे',
+            'सबसे पहले तो आपका नियरेस्ट एयरटेल स्टोर होगा आपकी बैंक ब्रांच आप किसी भी एयरटेल स्टोर पर कैश जमा कर सकते हैं और निकाल सकते हैं आप अपने अकाउंट में पैसे भी डिपॉजिट कर सकते हैं और यूपीआई से किसी और को ट्रांसफर भी कर सकते हैं',
+            'जी मैम और साथ ही आपको अपना बैंक अकाउंट नंबर याद रखने की भी कोई टेंशन नहीं होगी क्योंकि एयरटेल पेमेंट बैंक में आपका मोबाइल नंबर ही होगा आपका अकाउंट नंबर और तो और आप अपने सब्सिडी बैंक अकाउंट को भी एयरटेल पेमेंट बैंक से लिंक करवा सकते हैं और वह अमाउंट आप जब चाहे तब विड्रा कर सकते हैं',
+            'जी मैम और एयरटेल पेमेंट बैंक के द्वारा रिचार्ज करने पर आपको हर रिचार्ज पर ₹40 का कैशबैक  भी मिलेगा',
+            'मैम सिर्फ ₹500 के साथ अकाउंट ओपन करने पर आपका और आपके परिवार की सुरक्षा का दुर्घटना बीमा भी होता है',
+            'मैम यही तो बैंक वाला सिम का पांचवा जबरदस्त बेनिफिट है एयरटेल पेमेंट बैंक में आपका अकाउंट खोलने में लगेंगे सिर्फ 5 मिनट वह भी बिना किसी पेपर वर्क में आपका समय खराब किए',
+            'मैम यह आसान के साथ सुरक्षित भी है और अब बैंक के काम के लिए इतना दूर नहीं जाना पड़ेगा आपको साथ ही आप अपना समय भी बचा पाओगे',
+            ],
+            [
+            'नमस्कार मैम मैंने आपकी कनेक्शन की प्रॉब्लम को ठीक कर दिया है आपको एक कन्फर्मेशन मैसेज आया होगा',
+            'यह तो बहुत अच्छा है मैम क्या मैं आपकी और कोई मदद कर सकता हूं',
+            'जी मैम आप एक पोस्टपेड मोबाइल कनेक्शन यूज कर रहे हो क्या आपके पास घर पर और कोई मोबाइल कनेक्शन भी है',
+            'यह तो बहुत अच्छा है क्या वह दोनों कनेक्शन एयरटेल के हैं',
+            'और क्या आप घर पर ब्रॉडबैंड ही यूज करते हो',
+            'क्या वह एयरटेल का ब्रॉडबैंड है',
+            'और डीटीएच तो यूज़ करते ही होगे आप अपने घर में',
+            'आपके पास डीटीएच कौन सी कंपनी का है',
+            'तो मैम आप अभी जो अलग-अलग कंपनी के मोबाइल कनेक्शंस यूज करते हो एक एयरटेल का और दूसरा बताया आपने और कंपनियों के इन सबके आपको अलग-अलग डेट पर बिल भरने पढ़ते होंगे',
+            'और ब्रॉडबैंड का बिल भरने के लिए भी एक अलग डेट होती होगी',
+            'और डीटीएच का रिचार्ज करने के लिए भी एक अलग डेट होती होगी',
+            'मैम आप कैसे मैनेज करते हो यह सब कुछ आपको नहीं लगता कि यह सब मैनेज करना काफी ज्यादा डिफिकल्ट है',
+            'जी मैम आपके जैसे कस्टमर्स के लिए एयरटेल की एक स्मार्ट सर्विस अवेलेबल है इस सर्विस में हम आपके सारे कनेक्शन क्लब कर देंगे और आपके पास महीने का सिर्फ एक ही बिल आया करेगा जिसमें यह सारी सर्विसेज होंगी',
+            'और अब इसकी वजह से आपको अलग-अलग बिल पेमेंट डेट याद रखने की जरूरत नहीं होगी और आपका काम काफी ज्यादा आराम से हो जाएगा ',
+            'जी मैम सब का एक ही प्लान बन जाएगा और आपकी सर्विसेस उसी में क्लब हो जाएंगी जिसका आपको सिर्फ और सिर्फ एक ही बिल पे करना होगा',
+            'जी मैम मैं आपसे एक बात और पूछना चाहता हूं कि अभी इन सब सर्विस के कॉल सेंटर पर आपको अलग-अलग कॉल करना पड़ता होगा',
+            'इस सर्विस में आपका कांटेक्ट सेंटर भी एक ही हो जाएगा तो आप को डीटीएच ब्रॉडबैंड या मोबाइल कनेक्शन के लिए सिर्फ एक ही नंबर पर कांटेक्ट करने की जरूरत पड़ेगी',
+            'वैसे तो आप कभी भी एयरटेल स्टोर आ सकते हो और हम आपकी सहायता जरूर करेंगे पर अगर आप घर पे हैं और आपके DTH या ब्रॉडबैंड मैं प्रॉब्लम आजाये तो एक ही नंबर पर कॉल करना होगा',
+            'और मैम मैंने सुना है कि आपको घर पर डीटीएच सर्विस के लिए 100 से 200 रुपए देने पड़ते हैं',
+            'मैम वह चार्जेस भी आपके लाइफ टाइम के लिए खतम हो जाएंगे',
+            'हां जी फ्री सर्विस फॉरएवर',
+            'जी मैम इस प्लान में आपको तीन मोबाइल कनेक्शन एक डीटीएच जिसमें आपको ₹500 का वॉलेट बैलेंस मिलेगा जिससे आप अपने मनपसंद चैनल देख सकते हो साथ ही उसमें एचडी चैनल्स भी अवेलेबल होंगे',
+            'और जो सेटअप बॉक्स है  वो फ्री होगा साथ ही जो ब्रॉडबैंड कनेक्शन लगेगा उसकी स्पीड 200 एमबीपीएस होगी और इसके राउटर के लिए भी आपको कोई पैसे नहीं देने',
+            'साथ ही इसके लिए जो हाई स्पीड मॉडेम लगेगा वो भी फ्री होगा और यह सब आपको केवल ₹1999 के मंथली प्लान पर मिलेगा',
+            'जी मैम बिल्कुल अनलिमिटेड कॉलिंग लैंडलाइन और मोबाइल के लिए साथ ही साथ डीटीएच में ₹500 के चैनल और  ब्रॉडबैंड में  300 जीबी डाटा और मोबाइल में  95 जीबी डाटा जो कि आप तीनों मोबाइलों में शेयर कर सकते हो',
+            'जी मैम और एयरटेल थैंक्स की सारी सर्विसेज भी आपको अवेलेबल होंगी जिसमें अमेज़न प्राइम का 1 साल का सब्सक्रिप्शन और शो अकैडमी का सब्सक्रिप्शन  है',
+            'जी मैम आइए मैं आपकी मदद कर देता हूं'
+            ]
+            ];  
+            
+            
+            var time=[
+            ['m','s','l','l','s','m','m','s','s','l','l','l'],
+            ['m','m','l','l','s','m','s','m','s','m','s','l','s','l','l','m','s','m','s','m','m','s','s','l','l','m']
+            ];
+            
+            var tt=4000;
+            
+            var Content = '';
+            var ignore_onend;
+            var start_timestamp;
+            
+            let constraintObj = { 
+            audio: false, 
+            video: { 
+            facingMode: "user", 
+            width: { min: 150, ideal: 150, max: 150 },
+            height: { min: 170, ideal: 170, max: 170 } 
+            
+            } 
+            }; 
+            
+            if (navigator.mediaDevices === undefined) {
+            navigator.mediaDevices = {};
+            navigator.mediaDevices.getUserMedia = function(constraintObj) {
+            let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+            if (!getUserMedia) {
+                return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+            }
+            return new Promise(function(resolve, reject) {
+                getUserMedia.call(navigator, constraintObj, resolve, reject);
+            });
+            }
+            }else{
+            navigator.mediaDevices.enumerateDevices()
+            .then(devices => {
+            devices.forEach(device=>{
+                console.log(device.kind.toUpperCase(), device.label);
+                //, device.deviceId
+            })
+            })
+            .catch(err=>{
+            console.log(err.name, err.message);
+            })
+            }
+            $('#hint').html(hints[mindex][index]);
+            var recognition = new webkitSpeechRecognition();
+            var speech = new SpeechSynthesisUtterance();
+            navigator.mediaDevices.getUserMedia(constraintObj)
+            .then(function(mediaStreamObj) {
+            //connect the media stream to the first video element
+            let video = document.querySelector('video');
+            if ("srcObject" in video) {
+            video.srcObject = mediaStreamObj;
+            } else {
+            //old version
+            video.src = window.URL.createObjectURL(mediaStreamObj);
+            }
+            
+            video.onloadedmetadata = function(ev) {
+            //show in the video element what is being captured by the webcam
+            video.play();
+            };
+            
+            
+            if (!('webkitSpeechRecognition' in window)) {
+            
+            } else {
+            
+            recognition.continuous = true;
+            recognition.lang = 'hi-IN';
+            recognition.interimResults = false;
+            
+            
+            
+            speech.lang = "hi-IN";
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
+            
+            recognition.onstart = function() {
+            recognizing = true;
+            };
+            
+            recognition.onerror = function(event) {
+            if (event.error == 'no-speech') {
+              ignore_onend = true;
+            }
+            if (event.error == 'audio-capture') {
+              ignore_onend = true;
+            }
+            if (event.error == 'not-allowed') {
+              if (event.timeStamp - start_timestamp < 100) {
+                
+              } else {
+                
+              }
+              ignore_onend = true;
+            }
+            };
+            
+            recognition.onend = function() {
+            recognizing = false;
+            if (ignore_onend) {
+              return;
+            }
+            
+            
+            
+            
+            };
+            
+            recognition.onresult = function(event) {
+            var current = event.resultIndex;
+            var transcript = event.results[current][0].transcript;
+            Content += transcript;
+            $('#trainee').val(Content);
+            };
+            }
+            
+            $('#record').on('click', function(e) {
+            if (Content.length) {
+            Content += ' ';
+            }
+            recognition.start();
+            });
+            $("#trainee").on('input', function() {
+            Content = $(this).val();
+            })
+            
+            $('#cancel').on('click', function(e) {
+            Content ='';
+            $("#trainee").val(Content);
+            recognition.stop();
+            });
+            $('#stop').on('click', function(e) {
+            
+            recognition.stop();
+            setTimeout(()=>{
+            predict();
+            },3000);
+            $('#trainee').removeClass('invisible').addClass('visible');
+            
+            });
+            
+            
+          
+            
+            function predict(){
+            if(index < findex){
+            
+                var patt=new RegExp(trainee[mindex][index],"i");
+                
+                Content = Content.replace(/ +(?= )/g,'');
+                    
+                   if(patt.test(Content)){
+                  setTimeout(()=>{
+            
+            $('#hint').removeClass('invisible').addClass('visible'); 
+            $('#idea').removeClass('invisible').addClass('visible'); 
+            
+            
+            
+            $('#customer').html(customer[mindex][index]);
+            $('#customer').removeClass('invisible').addClass('visible');
+            speech.text = customer[mindex][index];
+            $('#contain').css("background-image", "url('assets/img/talk.gif')");
+                    
+             
+            
+            
+            index++;
+            
+            
+            window.speechSynthesis.speak(speech);
+            Content='';
+            
+             
+            
+            },2500);
+            
+            
+                }
+            else{
+                    Content='';
+                    
+                 
+            speech.text = imp;
+            window.speechSynthesis.speak(speech);
+            $('#hint').html(hints[mindex][index]);
+            
+            $('#hint').removeClass('invisible').addClass('visible');
+            $('#idea').removeClass('invisible').addClass('visible');
+            
+                }
+                
+           
+            }
+         
+
+          
+            
+            if(time[mindex][index]=='s'){
+            
+              setTimeout(()=>{
+               if(index>=findex){
+            
+         
+            $('#trainee').val('');
+            $('#customer').val('');
+            $('#contain').hide();
+         $('#contain2').show();
+            
+         }   
+            
+             $('#hint').html(hints[mindex][index]);
+               $('#contain').css("background-image", "url('assets/img/normal.gif')");
+               $('#trainee').val('');
+               $('#trainee').removeClass('visible').addClass('invisible');
+               $('#customer').removeClass('visible').addClass('invisible');
+             
+              },4000);
+            
+            }
+            else if(time[mindex][index]=='m'){
+            
+            setTimeout(()=>{
+            
+            
+            $('#hint').html(hints[mindex][index]);
+            $('#contain').css("background-image", "url('assets/img/normal.gif')");
+            $('#trainee').val('');
+            $('#trainee').removeClass('visible').addClass('invisible');
+            $('#customer').removeClass('visible').addClass('invisible');
+            
+            },5000);
+            
+            }  
+            else if(time[mindex][index]=='l'){
+            
+            setTimeout(()=>{
+            
+            
+            $('#hint').html(hints[mindex][index]);
+            $('#contain').css("background-image", "url('assets/img/normal.gif')");
+            $('#trainee').val('');
+            $('#trainee').removeClass('visible').addClass('invisible');
+            $('#customer').removeClass('visible').addClass('invisible');
+            
+            },7000);
+            
+            }
+            
+            
+            
+            
+            }
+            
+            
+            })
+            .catch(function(err) { 
+            console.log(err.name, err.message); 
+            });
+         </script>
+   </body>
+</html>
